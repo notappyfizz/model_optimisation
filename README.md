@@ -1,0 +1,14 @@
+# Optimisation for product maximisation
+The purpose of this algorithm is to maximise a particular product prsent in a kinetic (enzyme based) model, by varying a kinetic parameter over a given range, thus optimising the parameter. It displays the relation between the product concentration and the different parameter values, laying the groundwork for further research and experimentation.
+The idea to do this stemmed from my team's iGEM project. My team is IISER-Pune-India, 2023. Our project is to produce sustainable Jatropha-based aviation biofuel in a lipogenic yeast, <i>Yarrowia lipolytica</i>. I built a kinetic model for the fatty acid synthesis pathway, following glycolysis in yeast, to compute the theoretical yield of palmitic acid, the first key product of our biofuel production. The idea of attempting to vary parameter values to optimise the yield of palmitic acid prompted me to build this algorithm. This algorithm is a generalised one, that can take in a product from any SBML file the user inputs, a parameter to be varied, and the range over which it would vary. Thus, it is a generalised product maximsation algorithm.
+As of now, it is still in progress, but the aim is to complete it in the next few days.
+
+## How the algorithm works
+### Inputs
+The algorithm begins by prompting the user to input the path to their SBML model file. Subsequently, the user specifies the target product for maximisation, the kinetic parameter to be varied, and the symmetric range across which the parameter will be adjusted
+### The outer loop
+The outer loop systematically varies the specified kinetic parameter across the user-defined range. Commencing from the lower bound and iterating through evenly spaced values (based on user-defined resolution, defaulting to 100), the outer loop orchestrates the optimisation process.
+### The inner loop
+Within each iteration of the outer loop, the inner loop manages the temporal evolution of the product concentration for the current parameter value. Minute-wise concentrations are computed iteratively up to the user-specified time (default set to 15 minutes). Calculations account for the dynamic interplay of species, reactions, and parameters in the model. The concentration at the end of the specified time for the target product is stored in an array.
+### Output
+Upon completion of all iterations, the algorithm generates a graph elucidating the relationship between the final product concentration and the varied kinetic parameter values. This visualisation provides insights into how the selected parameter influences product formation, offering valuable groundwork for subsequent experimental investigations. The graph highlights the maximum product concentration achieved, aiding in the identification of the optimal parameter value for maximisation.
